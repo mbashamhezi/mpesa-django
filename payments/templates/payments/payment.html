@@ -1,0 +1,16 @@
+<!-- payments/payment.html -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form method="POST" action="{% url 'initiate_payment' %}">
+    {% csrf_token %}
+    <input type="text" name="phone" placeholder="Enter your phone number" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+    <input type="text" name="account_reference" placeholder="Order Reference" required>
+    <button type="submit">Pay with M-Pesa</button>
+</form>
